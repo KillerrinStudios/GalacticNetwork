@@ -36,10 +36,24 @@ namespace GalacticNetwork.STS.Identity.Helpers
                     throw new Exception(SigningCertificateThumbprintNotFound);
                 }
 
-                var certStore = new X509Store(StoreName.My, StoreLocation.LocalMachine);
+                // Configure the CertificateStoreLocation
+                StoreLocation storeLocation = StoreLocation.LocalMachine;
+                bool validOnly = true;
+                if (certificateConfiguration.CertificateStoreLocation == "CurrentUser")
+                {
+                    storeLocation = StoreLocation.CurrentUser;
+                    validOnly = false;
+                }
+                else //if (certificateConfiguration.CertificateStoreLocation == "LocalMachine")
+                {
+                    storeLocation = StoreLocation.LocalMachine;
+                    validOnly = true;
+                }
+
+                var certStore = new X509Store(StoreName.My, storeLocation);
                 certStore.Open(OpenFlags.ReadOnly);
 
-                var certCollection = certStore.Certificates.Find(X509FindType.FindByThumbprint, certificateConfiguration.SigningCertificateThumbprint, true);
+                var certCollection = certStore.Certificates.Find(X509FindType.FindByThumbprint, certificateConfiguration.SigningCertificateThumbprint, validOnly);
                 if (certCollection.Count == 0)
                 {
                     throw new Exception(CertificateNotFound);

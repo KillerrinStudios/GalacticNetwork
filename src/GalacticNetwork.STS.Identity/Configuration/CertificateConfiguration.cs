@@ -23,5 +23,7 @@
         public string ValidationCertificatePfxFilePath { get; set; }
 
         public string ValidationCertificatePfxFilePassword { get; set; }
+
+        public string CertificateStoreLocation { get; set; }
     }
 }
