@@ -39,17 +39,24 @@ namespace GalacticNetwork.STS.Identity.Helpers
                 // Configure the CertificateStoreLocation
                 StoreLocation storeLocation = StoreLocation.LocalMachine;
                 bool validOnly = true;
-                if (certificateConfiguration.CertificateStoreLocation == "CurrentUser")
+                string certStoreLocationLower = certificateConfiguration.CertificateStoreLocation.ToLower();
+                if (certStoreLocationLower == "currentuser" || certificateConfiguration.CertificateStoreLocation == "1")
                 {
                     storeLocation = StoreLocation.CurrentUser;
-                    validOnly = false;
+                    validOnly = true;
                 }
-                else //if (certificateConfiguration.CertificateStoreLocation == "LocalMachine")
+                else if (certStoreLocationLower == "localmachine" || certStoreLocationLower == "2")
+                {
+                    storeLocation = StoreLocation.LocalMachine;
+                    validOnly = true;
+                }
+                else
                 {
                     storeLocation = StoreLocation.LocalMachine;
                     validOnly = true;
                 }
 
+                // Open Certificate
                 var certStore = new X509Store(StoreName.My, storeLocation);
                 certStore.Open(OpenFlags.ReadOnly);
 
