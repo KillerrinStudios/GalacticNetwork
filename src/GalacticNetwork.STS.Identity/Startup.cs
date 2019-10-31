@@ -37,6 +37,9 @@ namespace GalacticNetwork.STS.Identity
         {
             services.ConfigureRootConfiguration(Configuration);
 
+            // Add Debug Configuration
+            services.AddDebuggingConfiguration(Configuration, Environment);
+
             // Add DbContext for Asp.Net Core Identity
             services.AddIdentityDbContext<AdminIdentityDbContext>(Configuration, Environment);
 

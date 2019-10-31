@@ -45,6 +45,7 @@ namespace GalacticNetwork.STS.Identity.Controllers
         private readonly IGenericControllerLocalizer<AccountController<TUser, TKey>> _localizer;
         private readonly LoginConfiguration _loginConfiguration;
         private readonly RegisterConfiguration _registerConfiguration;
+        private readonly DebugConfiguration _debugConfiguration;
 
         public AccountController(
             UserResolver<TUser> userResolver,
@@ -57,7 +58,8 @@ namespace GalacticNetwork.STS.Identity.Controllers
             IEmailSender emailSender,
             IGenericControllerLocalizer<AccountController<TUser, TKey>> localizer,
             LoginConfiguration loginConfiguration,
-            RegisterConfiguration registerConfiguration)
+            RegisterConfiguration registerConfiguration,
+            DebugConfiguration debugConfiguration)
         {
             _userResolver = userResolver;
             _userManager = userManager;
@@ -70,6 +72,7 @@ namespace GalacticNetwork.STS.Identity.Controllers
             _localizer = localizer;
             _loginConfiguration = loginConfiguration;
             _registerConfiguration = registerConfiguration;
+            _debugConfiguration = debugConfiguration;
         }
 
         /// <summary>

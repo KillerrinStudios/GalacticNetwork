@@ -90,6 +90,14 @@ namespace GalacticNetwork.STS.Identity.Helpers
             app.UseReferrerPolicy(options => options.NoReferrer());
         }
 
+        public static void AddDebuggingConfiguration(this IServiceCollection services, IConfiguration configuration, IHostingEnvironment environment)
+        {
+            DebugConfiguration config = new DebugConfiguration();
+
+
+            services.AddSingleton(config);
+        }
+
         /// <summary>
         /// Add email senders - configuration of sendgrid, smtp senders
         /// </summary>
