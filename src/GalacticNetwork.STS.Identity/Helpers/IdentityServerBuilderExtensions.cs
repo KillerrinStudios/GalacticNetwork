@@ -43,7 +43,7 @@ namespace GalacticNetwork.STS.Identity.Helpers
                 if (certStoreLocationLower == "currentuser" || certificateConfiguration.CertificateStoreLocation == "1")
                 {
                     storeLocation = StoreLocation.CurrentUser;
-                    validOnly = true;
+                    validOnly = false;
                 }
                 else if (certStoreLocationLower == "localmachine" || certStoreLocationLower == "2")
                 {
