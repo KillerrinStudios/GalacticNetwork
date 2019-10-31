@@ -94,6 +94,10 @@ namespace GalacticNetwork.STS.Identity.Helpers
         {
             DebugConfiguration config = new DebugConfiguration();
 
+            //config.ConfigurationDbConnection = configuration.GetConnectionString(ConfigurationConsts.ConfigurationDbConnectionStringKey);
+            //config.PersistedGrantDbConnection = configuration.GetConnectionString(ConfigurationConsts.PersistedGrantDbConnectionStringKey);
+            //config.IdentityDbConnection = configuration.GetConnectionString(ConfigurationConsts.IdentityDbConnectionStringKey);
+            //config.LoggingDbConnection = configuration.GetConnectionString(ConfigurationConsts.SerilogDbConnectionStringKey);
 
             services.AddSingleton(config);
         }
