@@ -21,7 +21,7 @@ namespace GalacticNetwork.Admin.Configuration.IdentityServer
 	            new Client
                 {
 
-                    ClientId =adminConfiguration.ClientId,
+                    ClientId = adminConfiguration.ClientId,
                     ClientName =adminConfiguration.ClientId,
                     ClientUri = adminConfiguration.IdentityAdminBaseUrl,
 
@@ -32,10 +32,19 @@ namespace GalacticNetwork.Admin.Configuration.IdentityServer
                         new Secret(adminConfiguration.ClientSecret.ToSha256())
                     },
 
-                    RedirectUris = { $"{adminConfiguration.IdentityAdminBaseUrl}/signin-oidc"},
+                    RedirectUris = {
+                        $"{adminConfiguration.IdentityAdminBaseUrl}/signin-oidc",
+                        $"http://localhost:9000/signin-oidc"
+                    },
                     FrontChannelLogoutUri = $"{adminConfiguration.IdentityAdminBaseUrl}/signout-oidc",
-                    PostLogoutRedirectUris = { $"{adminConfiguration.IdentityAdminBaseUrl}/signout-callback-oidc"},
-                    AllowedCorsOrigins = { adminConfiguration.IdentityAdminBaseUrl },
+                    PostLogoutRedirectUris = {
+                        $"{adminConfiguration.IdentityAdminBaseUrl}/signout-callback-oidc",
+                        $"http://localhost:9000/signout-callback-oidc"
+                    },
+                    AllowedCorsOrigins = {
+                        adminConfiguration.IdentityAdminBaseUrl,
+                        $"http://localhost:9000"
+                    },
 
                     AllowedScopes =
                     {
@@ -46,16 +55,20 @@ namespace GalacticNetwork.Admin.Configuration.IdentityServer
                     }
                 },
 
+                ///////////////////////////////////////////
+	            // GalacticNetwork.Admin.API Client
+	            //////////////////////////////////////////
                 new Client
                 {
                     ClientId = adminConfiguration.IdentityAdminApiSwaggerUIClientId,
                     ClientName = adminConfiguration.IdentityAdminApiSwaggerUIClientId,
-                    
+
                     AllowedGrantTypes = GrantTypes.Implicit,
 
                     RedirectUris = new List<string>
                     {
-                        adminConfiguration.IdentityAdminApiSwaggerUIRedirectUrl
+                        adminConfiguration.IdentityAdminApiSwaggerUIRedirectUrl,
+                        "http://localhost:5001/swagger/oauth2-redirect.html"
                     },
                     AllowedScopes =
                     {
