@@ -23,4 +23,10 @@
 		<ProjectReference Include="..\GalacticNetwork.Admin.EntityFramework.Shared\GalacticNetwork.Admin.EntityFramework.Shared.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="gn-is4-cert.pfx">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 </Project>
