@@ -11,8 +11,8 @@ namespace GalacticNetwork.Admin.Api.GraphQL
     {
         public AdminApiSchema(IDependencyResolver resolver) : base(resolver)
         {
-            Query = resolver.Resolve<AdminApiQuery>();
-            Mutation = resolver.Resolve<AdminApiMutation>();
+            Query = resolver.Resolve<AdminApiQuery<TUserDtoKey, TRoleDtoKey>>();
+            Mutation = resolver.Resolve<AdminApiMutation<TUserDtoKey, TRoleDtoKey>>();
         }
     }
 }
