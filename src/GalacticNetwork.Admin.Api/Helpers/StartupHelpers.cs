@@ -15,6 +15,9 @@ using GalacticNetwork.Admin.Api.Configuration.Constants;
 using GalacticNetwork.Admin.Api.Helpers.Localization;
 using Skoruba.IdentityServer4.Admin.BusinessLogic.Identity.Dtos.Identity;
 using Skoruba.IdentityServer4.Admin.EntityFramework.Interfaces;
+using GraphQL;
+using GalacticNetwork.Admin.Api.GraphQL;
+using GraphQL.Types;
 
 namespace GalacticNetwork.Admin.Api.Helpers
 {
@@ -154,6 +157,17 @@ namespace GalacticNetwork.Admin.Api.Helpers
                 options.AddPolicy(AuthorizationConsts.AdministrationPolicy,
                     policy => policy.RequireRole(AuthorizationConsts.AdministrationRole));
             });
+        }
+
+        public static void AddGraphQL(this IServiceCollection services)
+        {
+            services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
+            services.AddSingleton<AdminApiQuery>();
+            services.AddSingleton<AdminApiMutation>();
+
+            // Build the GraphQL Schema
+            var sp = services.BuildServiceProvider();
+            services.AddSingleton<ISchema>(new AdminApiSchema(new FuncDependencyResolver(type => sp.GetService(type))));
         }
     }
 }
