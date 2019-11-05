@@ -169,8 +169,8 @@ namespace GalacticNetwork.Admin.Api.Helpers
         {
             // GraphQL Scaffholding
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
-            services.AddSingleton<AdminApiQuery>();
-            services.AddSingleton<AdminApiMutation>();
+            services.AddSingleton<AdminApiQuery<TUserDtoKey, TRoleDtoKey>>();
+            services.AddSingleton<AdminApiMutation<TUserDtoKey, TRoleDtoKey>>();
 
             // GraphQL Types
             // API Resources
@@ -200,10 +200,10 @@ namespace GalacticNetwork.Admin.Api.Helpers
             services.AddSingleton<UserClaimType<TUserDtoKey>>();
             services.AddSingleton<UserProviderType<TUserDtoKey>>();
             services.AddSingleton<UserRoleType<TUserDtoKey, TRoleDtoKey>>();
-
+            
             // Build the GraphQL Schema
             var sp = services.BuildServiceProvider();
-            services.AddSingleton<ISchema>(new AdminApiSchema(new FuncDependencyResolver(type => sp.GetService(type))));
+            services.AddSingleton<ISchema>(new AdminApiSchema<TUserDtoKey, TRoleDtoKey>(new FuncDependencyResolver(type => sp.GetService(type))));
         }
     }
 }

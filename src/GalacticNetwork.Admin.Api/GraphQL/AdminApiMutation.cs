@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GalacticNetwork.Admin.Api.GraphQL
 {
-    public class AdminApiMutation : ObjectGraphType
+    public class AdminApiMutation<TUserDtoKey, TRoleDtoKey> : ObjectGraphType
     {
         public AdminApiMutation()
         {
