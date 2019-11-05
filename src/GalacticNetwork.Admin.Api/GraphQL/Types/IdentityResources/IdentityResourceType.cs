@@ -21,8 +21,7 @@ namespace GalacticNetwork.Admin.Api.GraphQL.Types.IdentityResources
             Field(x => x.ShowInDiscoveryDocument);
             Field(x => x.Required);
             Field(x => x.Emphasize);
-            Field(x => x.Required);
-            Field<ListGraphType>("UserClaims", resolve: context => context.Source.UserClaims);
+            //Field<ListGraphType>("UserClaims", resolve: context => context.Source.UserClaims);
         }
 
     }
