@@ -20,6 +20,10 @@ using GalacticNetwork.Admin.Api.GraphQL;
 using GraphQL.Types;
 using GalacticNetwork.Admin.Api.GraphQL.Types.Clients;
 using GalacticNetwork.Admin.Api.GraphQL.Types.IdentityResources;
+using GalacticNetwork.Admin.Api.GraphQL.Types.ApiResources;
+using GalacticNetwork.Admin.Api.GraphQL.Types.PersistedGrants;
+using GalacticNetwork.Admin.Api.GraphQL.Types.Roles;
+using GalacticNetwork.Admin.Api.GraphQL.Types.Users;
 
 namespace GalacticNetwork.Admin.Api.Helpers
 {
