@@ -132,9 +132,9 @@ namespace GalacticNetwork.Admin.Api.Helpers
         /// <param name="services"></param>
         /// <param name="adminApiConfiguration"></param>
         public static void AddApiAuthentication<TIdentityDbContext, TUser, TRole>(this IServiceCollection services,
-            AdminApiConfiguration adminApiConfiguration) 
-            where TIdentityDbContext : DbContext 
-            where TRole : class 
+            AdminApiConfiguration adminApiConfiguration)
+            where TIdentityDbContext : DbContext
+            where TRole : class
             where TUser : class
         {
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
