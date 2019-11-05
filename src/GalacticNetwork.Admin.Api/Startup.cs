@@ -89,7 +89,7 @@ namespace GalacticNetwork.Admin.Api
                 options.OperationFilter<AuthorizeCheckOperationFilter>();
             });
 
-            services.AddGraphQL();
+            services.AddGraphQL<string, string>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, AdminApiConfiguration adminApiConfiguration)

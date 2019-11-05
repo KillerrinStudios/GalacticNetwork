@@ -165,7 +165,7 @@ namespace GalacticNetwork.Admin.Api.Helpers
             });
         }
 
-        public static void AddGraphQL(this IServiceCollection services)
+        public static void AddGraphQL<TUserDtoKey, TRoleDtoKey>(this IServiceCollection services)
         {
             // GraphQL Scaffholding
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
@@ -194,12 +194,12 @@ namespace GalacticNetwork.Admin.Api.Helpers
             services.AddSingleton<PersistedGrantType>();
 
             // Roles
-            services.AddSingleton<RoleClaimType>();
+            services.AddSingleton<RoleClaimType<TRoleDtoKey>>();
 
             // Users
-            services.AddSingleton<UserClaimType>();
-            services.AddSingleton<UserProviderType>();
-            services.AddSingleton<UserRoleType>();
+            services.AddSingleton<UserClaimType<TUserDtoKey>>();
+            services.AddSingleton<UserProviderType<TUserDtoKey>>();
+            services.AddSingleton<UserRoleType<TUserDtoKey, TRoleDtoKey>>();
 
             // Build the GraphQL Schema
             var sp = services.BuildServiceProvider();

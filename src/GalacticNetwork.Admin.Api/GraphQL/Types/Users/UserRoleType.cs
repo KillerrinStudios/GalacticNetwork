@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GalacticNetwork.Admin.Api.GraphQL.Types.Users
 {
-    public class UserRoleType : ObjectGraphType<UserRoleApiDto<string, string>>
+    public class UserRoleType<TUserDtoKey, TRoleDtoKey> : ObjectGraphType<UserRoleApiDto<TUserDtoKey, TRoleDtoKey>>
     {
         public UserRoleType()
         {

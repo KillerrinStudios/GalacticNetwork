@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GalacticNetwork.Admin.Api.GraphQL.Types.Roles
 {
-    public class RoleClaimType : ObjectGraphType<RoleClaimApiDto<string>>
+    public class RoleClaimType<TRoleDtoKey> : ObjectGraphType<RoleClaimApiDto<TRoleDtoKey>>
     {
         public RoleClaimType()
         {

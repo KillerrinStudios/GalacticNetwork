@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GalacticNetwork.Admin.Api.GraphQL.Types.Users
 {
-    public class UserClaimType : ObjectGraphType<UserClaimApiDto<string>>
+    public class UserClaimType<TUserDtoKey> : ObjectGraphType<UserClaimApiDto<TUserDtoKey>>
     {
         public UserClaimType()
         {
