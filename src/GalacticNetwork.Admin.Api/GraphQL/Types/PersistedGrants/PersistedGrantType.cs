@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GalacticNetwork.Admin.Api.GraphQL.Types.IdentityResources
+namespace GalacticNetwork.Admin.Api.GraphQL.Types.PersistedGrants
 {
     public class PersistedGrantType : ObjectGraphType<PersistedGrantApiDto>
     {

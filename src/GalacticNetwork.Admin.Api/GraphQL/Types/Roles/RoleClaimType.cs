@@ -1,12 +1,11 @@
-﻿using GalacticNetwork.Admin.Api.Dtos.PersistedGrants;
-using GalacticNetwork.Admin.Api.Dtos.Roles;
+﻿using GalacticNetwork.Admin.Api.Dtos.Roles;
 using GraphQL.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GalacticNetwork.Admin.Api.GraphQL.Types.IdentityResources
+namespace GalacticNetwork.Admin.Api.GraphQL.Types.Roles
 {
     public class RoleClaimType : ObjectGraphType<RoleClaimApiDto<string>>
     {

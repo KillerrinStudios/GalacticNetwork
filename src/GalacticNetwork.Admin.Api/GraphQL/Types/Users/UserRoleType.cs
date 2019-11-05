@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GalacticNetwork.Admin.Api.GraphQL.Types.Clients
+namespace GalacticNetwork.Admin.Api.GraphQL.Types.Users
 {
     public class UserRoleType : ObjectGraphType<UserRoleApiDto<string, string>>
     {

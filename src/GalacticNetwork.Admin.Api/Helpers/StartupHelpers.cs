@@ -18,6 +18,8 @@ using Skoruba.IdentityServer4.Admin.EntityFramework.Interfaces;
 using GraphQL;
 using GalacticNetwork.Admin.Api.GraphQL;
 using GraphQL.Types;
+using GalacticNetwork.Admin.Api.GraphQL.Types.Clients;
+using GalacticNetwork.Admin.Api.GraphQL.Types.IdentityResources;
 
 namespace GalacticNetwork.Admin.Api.Helpers
 {
@@ -161,9 +163,39 @@ namespace GalacticNetwork.Admin.Api.Helpers
 
         public static void AddGraphQL(this IServiceCollection services)
         {
+            // GraphQL Scaffholding
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
             services.AddSingleton<AdminApiQuery>();
             services.AddSingleton<AdminApiMutation>();
+
+            // GraphQL Types
+            // API Resources
+            services.AddSingleton<ApiResourcePropertyType>();
+            services.AddSingleton<ApiResourceType>();
+            services.AddSingleton<ApiScopeType>();
+            services.AddSingleton<ApiSecretType>();
+
+            // Clients
+            services.AddSingleton<ClientClaimType>();
+            services.AddSingleton<ClientPropertyType>();
+            services.AddSingleton<ClientType>();
+            services.AddSingleton<ClientSecretType>();
+
+            // Identity Resources
+            services.AddSingleton<IdentityResourcePropertyType>();
+            services.AddSingleton<IdentityResourceType>();
+
+            // Persisted Grants
+            services.AddSingleton<PersistedGrantSubjectType>();
+            services.AddSingleton<PersistedGrantType>();
+
+            // Roles
+            services.AddSingleton<RoleClaimType>();
+
+            // Users
+            services.AddSingleton<UserClaimType>();
+            services.AddSingleton<UserProviderType>();
+            services.AddSingleton<UserRoleType>();
 
             // Build the GraphQL Schema
             var sp = services.BuildServiceProvider();
