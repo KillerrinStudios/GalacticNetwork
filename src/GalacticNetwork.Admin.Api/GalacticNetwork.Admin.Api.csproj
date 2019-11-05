@@ -22,8 +22,4 @@
     <ProjectReference Include="..\GalacticNetwork.Admin.EntityFramework.Shared\GalacticNetwork.Admin.EntityFramework.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="GraphQL\Types\" />
-  </ItemGroup>
-
 </Project>
