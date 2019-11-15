@@ -10,6 +10,7 @@ using GalacticNetwork.Admin.EntityFramework.Shared.DbContexts;
 using GalacticNetwork.Admin.EntityFramework.Shared.Entities.Identity;
 using GalacticNetwork.Admin.Helpers;
 using System.Diagnostics;
+using System;
 
 namespace GalacticNetwork.Admin
 {
@@ -34,7 +35,37 @@ namespace GalacticNetwork.Admin
             HostingEnvironment = env;
 
             // Apply Secret Configuration
-            Admin.Configuration.Constants.AuthenticationConsts.OidcClientSecret = Configuration["AdminConfiguration:ClientSecret"];
+            bool validateConfiguration(string value)
+            {
+                if (string.IsNullOrWhiteSpace(value)) { return false; }
+                else if (value == "<Not-Configured />") { return false; }
+                return true;
+            }
+
+            IAdminConfiguration adminConfigSection = Configuration.GetSection(Admin.Configuration.Constants.ConfigurationConsts.AdminConfigurationKey) as IAdminConfiguration;
+            string adminConfigClientSecret = "";
+            if (adminConfigSection != null)
+            {
+                adminConfigClientSecret = adminConfigSection.ClientSecret;
+                if (!validateConfiguration(adminConfigClientSecret))
+                {
+                    throw new ArgumentException($"AdminConfiguration:ClientSecret is invalid: {adminConfigClientSecret}");
+                }
+            }
+            else
+            {
+                try { adminConfigClientSecret = Configuration["AdminConfiguration:ClientSecret"]; } catch (Exception) { }
+                if (!validateConfiguration(adminConfigClientSecret))
+                {
+                    try { adminConfigClientSecret = Configuration["AdminConfiguration__ClientSecret"]; } catch (Exception) { }
+                    if (!validateConfiguration(adminConfigClientSecret))
+                    {
+                        throw new ArgumentException($"AdminConfiguration:ClientSecret is invalid: {adminConfigClientSecret}");
+                    }
+                }
+            }
+
+            Admin.Configuration.Constants.AuthenticationConsts.OidcClientSecret = adminConfigClientSecret;
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -52,7 +83,7 @@ namespace GalacticNetwork.Admin
 
             // Add Asp.Net Core Identity Configuration and OpenIdConnect auth as well
             services.AddAuthenticationServices<AdminIdentityDbContext, UserIdentity, UserIdentityRole>(HostingEnvironment, rootConfiguration.AdminConfiguration);
-            
+
             // Add exception filters in MVC
             services.AddMvcExceptionFilters();
 
